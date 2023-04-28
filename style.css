@@ -1,0 +1,319 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* border: 1px solid red; */
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  /* color: #fff; */
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                              supported by Chrome, Edge, Opera and Firefox */
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.keyboard-display {
+  width: 1050px;
+  height: 200px;
+  margin-top: 20px;
+  border: 4px solid black;
+  background-color: rgba(177, 215, 244, 0.427);
+  padding: 30px;
+  font-size: 30px;
+  outline: none;
+  font-weight: normal;
+  resize: none;
+}
+
+.keyboard-display::placeholder {
+  font-weight: normal;
+}
+.status-bar::before {
+  content: "A";
+  position: absolute;
+  font-size: 30px;
+  font-weight: normal;
+  top: -4px;
+  left: -61px;
+  color: #000;
+  opacity: 0.1;
+  transition: all 0.2s ease;
+}
+.status-bar::after {
+  content: "a";
+  position: absolute;
+  width: 0;
+  font-size: 30px;
+  top: -4px;
+  left: -40px;
+  color: #000;
+  opacity: 0.7;
+  color: red;
+  transition: all 0.2s ease;
+}
+.status-bar.upper::before {
+  opacity: 0.7;
+  color: red;
+}
+.status-bar.upper::after {
+  opacity: 0.1;
+  color: #000;
+}
+.status-bar {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  position: relative;
+}
+
+.status-bar div {
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.current-lang {
+  position: relative;
+  cursor: pointer;
+  border: 3px solid black;
+  width: 40px;
+  height: 20px;
+  padding: 10px;
+}
+
+.current-lang::after {
+  content: "RU";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1 !important;
+  font-weight: bold;
+  font-size: 19px;
+}
+
+.current-lang.eng::after {
+  content: "EN" !important;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1 !important;
+  font-weight: bold;
+  font-size: 19px;
+}
+
+.animation-body {
+  width: 70px;
+  height: 30px;
+  box-shadow: inset 0 0 4px #00000092;
+  background: linear-gradient(90deg, #69f389 50%, #f36980 50%);
+  cursor: pointer;
+  position: relative;
+}
+.animation {
+  background-color: #fff;
+  width: 70%;
+  height: 100%;
+  position: absolute;
+  left: -0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 4px black;
+}
+.animation.on {
+  transform: translateX(45%);
+}
+.animation img {
+  width: 50%;
+}
+.keyboard-wrapper {
+  width: 1100px;
+  margin: 0px auto 0px;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 20px 10px;
+  background: linear-gradient(
+    90deg,
+    #f75f78,
+    #f36980,
+    #faba60,
+    #f5cd94,
+    #faba60,
+    #f36980,
+    #f75f78
+  );
+  background-size: 400%;
+  animation: keyboardColor 10s ease-in-out infinite;
+  animation-fill-mode: both;
+  animation-play-state: paused;
+  border: 5px solid black;
+  position: relative;
+  z-index: 1;
+}
+
+.animationOn {
+  animation-play-state: running;
+}
+
+@keyframes keyboardColor {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 400% 0;
+  }
+}
+
+.keyboard-btn {
+  width: 60px;
+  height: 60px;
+  padding: 8px;
+  background-color: rgb(59, 58, 58);
+  font-size: 16px;
+  font-weight: normal;
+  color: white;
+  border: 2px solid rgba(0, 0, 0, 0.56);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.992);
+  border-radius: 3px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s linear;
+  cursor: pointer;
+  position: relative;
+  /* z-index: 99; */
+}
+.letter-btn {
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-size: 22px;
+}
+.button-upper {
+  text-transform: uppercase;
+}
+
+.keyboard-btn.active,
+.number-btn.active,
+.keyboard-btn:active,
+.number-btn:active {
+  box-shadow: none;
+  scale: 0.99;
+}
+
+::after {
+  font-weight: normal;
+  font-size: 17px;
+  opacity: 0.6;
+  position: absolute;
+  bottom: 7px;
+  right: 7px;
+}
+
+/* ::before {
+  font-weight: normal;
+  font-size: 15px;
+  opacity: 0.6;
+  position: absolute;
+  top: 5px;
+  left: 7px;
+} */
+
+.letter-btn[lang="ru"]::after {
+  content: attr(englower);
+}
+
+.letter-btn[lang="eng"]::after {
+  content: attr(rulower);
+}
+
+#\~ {
+  justify-content: center;
+  align-items: center;
+}
+
+#\~::after {
+  content: "";
+}
+
+#CapsLock::after {
+  content: "";
+  top: 5px;
+  right: 5px;
+  width: 6px;
+  height: 6px;
+  border-radius: 100%;
+  background-color: grey;
+}
+
+#CapsLock.on::after {
+  background-color: rgb(0, 255, 8);
+}
+
+#Win svg {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+}
+
+#\~ {
+  width: 50px;
+}
+
+#Tab,
+#Ctrl,
+#CtrlR {
+  width: 90px;
+}
+#Delete {
+  width: 110px;
+}
+#CapsLock {
+  width: 130px;
+}
+
+.keyboard-btn:nth-of-type(42),
+#Enter {
+  width: 140px;
+}
+
+#Backspace {
+  width: 150px;
+}
+.spec-btn::after {
+  content: "" !important;
+}
+
+#Space {
+  width: 430px;
+}
