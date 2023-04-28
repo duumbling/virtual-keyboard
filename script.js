@@ -426,3 +426,115 @@ if (currentLang === "ru") {
 } else {
   load(engList);
 }
+
+const btnList = document.querySelectorAll(".keyboard-btn");
+const lettersList = document.querySelectorAll(".letter-btn");
+const langStatus = document.querySelector(".current-lang");
+let shiftStatus = false;
+// chech if it's upper by shift
+const isUpper = () => {
+  if (shiftStatus) {
+    btnList.forEach((btn) => {
+      btn.innerHTML =
+        currentLang === "eng"
+          ? btn.getAttribute("engupper")
+          : btn.getAttribute("ruupper");
+    });
+  } else {
+    btnList.forEach((btn) => {
+      btn.innerHTML =
+        currentLang === "eng"
+          ? btn.getAttribute("englower")
+          : btn.getAttribute("rulower");
+    });
+  }
+};
+
+// change language
+
+const langSwiper = () => {
+  if (currentLang === "ru") {
+    langStatus.classList.toggle("eng");
+    localStorage.setItem("currentLang", "eng");
+    currentLang = "eng";
+    document.querySelector("textarea").placeholder =
+      "Press LShift + LCtrl or click on current language to change language";
+    isUpper();
+    lettersList.forEach((btn) => {
+      btn.setAttribute("lang", currentLang);
+    });
+  } else if (currentLang === "eng") {
+    langStatus.classList.toggle("eng");
+    localStorage.setItem("currentLang", "ru");
+    currentLang = "ru";
+    document.querySelector("textarea").placeholder =
+      "Нажмите LShift + LCtrl либо кликните на текущий язык чтобы сменить язык";
+    isUpper();
+    lettersList.forEach((btn) => {
+      btn.setAttribute("lang", currentLang);
+    });
+  }
+};
+
+// change language with click on statusButton
+langStatus.addEventListener("click", () => {
+  langSwiper();
+});
+
+// change language with shift+ctrl
+document.addEventListener("keydown", (e) => {
+  // console.log(e)
+  if (e.key === "Control" && e.shiftKey === true) {
+    langSwiper();
+  }
+});
+
+// caps-lock on/off
+const capsLock = document.querySelector("#CapsLock");
+capsLock.onclick = () => {
+  capsLock.classList.toggle("on");
+  document.querySelector(".status-bar").classList.toggle("upper");
+  lettersList.forEach((btn) => {
+    btn.classList.toggle("button-upper");
+  });
+};
+document.addEventListener("keydown", (e) => {
+  if (e.key === "CapsLock") {
+    capsLock.classList.toggle("on");
+    document.querySelector(".status-bar").classList.toggle("upper");
+    lettersList.forEach((btn) => {
+      btn.classList.toggle("button-upper");
+    });
+  }
+});
+
+// shift on/off
+const ShiftL = document.querySelectorAll("#Shift")[0];
+const ShiftR = document.querySelectorAll("#Shift")[1];
+const shiftEvents = () => {
+  function addEvents(element, eventNames, listener) {
+    const events = eventNames.split(" ");
+    for (let i = 0; i < events.length; i += 1) {
+      element.addEventListener(events[i], listener, false);
+    }
+  }
+
+  const up = (e) => {
+    if (e.key === "Shift" || e.target === ShiftL || e.target === ShiftR) {
+      document.querySelector(".status-bar").classList.toggle("upper");
+      shiftStatus = false;
+      isUpper();
+    }
+  };
+  const down = (e) => {
+    if (e.key === "Shift" || e.target === ShiftL || e.target === ShiftR) {
+      document.querySelector(".status-bar").classList.toggle("upper");
+      shiftStatus = true;
+      isUpper();
+    }
+  };
+
+  addEvents(document, "keydown mousedown", down);
+  addEvents(document, "keyup mouseup", up);
+};
+shiftEvents();
