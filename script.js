@@ -571,3 +571,126 @@ const keyboardAnimation = () => {
   }
 };
 animBody.onclick = keyboardAnimation;
+
+// input
+const display = document.querySelector(".keyboard-display");
+const input = (btn) => {
+  const capsStatus = document
+    .querySelector("#CapsLock")
+    .classList.contains("on");
+  // console.log("caps ", capsStatus, " shift ", shiftStatus);
+  if (
+    btn.classList.contains("letter-btn") ||
+    btn.classList.contains("number-btn")
+  ) {
+    display.focus();
+
+    if (shiftStatus && capsStatus) {
+      display.setRangeText(
+        `${btn.innerText.toLowerCase()}`,
+        display.selectionStart,
+        display.selectionEnd,
+        "end"
+      );
+    } else {
+      display.setRangeText(
+        `${btn.innerText}`,
+        display.selectionStart,
+        display.selectionEnd,
+        "end"
+      );
+    }
+  } else if (btn.id === "Space") {
+    display.focus();
+    display.setRangeText(
+      " ",
+      display.selectionStart,
+      display.selectionEnd,
+      "end"
+    );
+  } else if (btn.id === "Backspace") {
+    display.focus();
+    if (display.selectionStart !== display.selectionEnd) {
+      display.setRangeText(
+        "",
+        display.selectionStart,
+        display.selectionEnd,
+        "end"
+      );
+    } else {
+      display.selectionStart -= 1;
+      display.setRangeText("");
+    }
+  } else if (btn.id === "Delete") {
+    display.focus();
+    if (display.selectionStart !== display.selectionEnd) {
+      display.setRangeText(
+        "",
+        display.selectionStart,
+        display.selectionEnd,
+        "end"
+      );
+    } else {
+      display.selectionEnd += 1;
+      display.setRangeText("");
+    }
+  } else if (btn.id === "Enter") {
+    display.focus();
+    display.setRangeText(
+      "\n",
+      display.selectionStart,
+      display.selectionEnd,
+      "end"
+    );
+  } else if (btn.id === "Tab") {
+    display.focus();
+    display.setRangeText(
+      `${" ".repeat(4)}`,
+      display.selectionStart,
+      display.selectionEnd,
+      "end"
+    );
+  } else if (btn.id === "←") {
+    display.focus();
+    display.selectionStart -= 1;
+    display.selectionEnd -= 1;
+  } else if (btn.id === "↑") {
+    display.focus();
+    display.selectionStart = 0;
+    display.selectionEnd = 0;
+  } else if (btn.id === "→") {
+    display.focus();
+    display.selectionEnd += 1;
+    display.selectionStart += 1;
+  } else if (btn.id === "↓") {
+    display.focus();
+
+    display.selectionStart = display.value.length;
+    display.selectionEnd = display.value.length;
+  }
+};
+
+// input by push
+const pushInput = () => {
+  document.addEventListener("keypress", (e) => {
+    lettersList.forEach((btn) => {
+      if (e.code === btn.getAttribute("keycode")) {
+        e.preventDefault();
+        input(btn);
+      }
+    });
+  });
+};
+pushInput();
+
+// input by click
+const clickInput = () => {
+  document.addEventListener("click", (e) => {
+    btnList.forEach((btn) => {
+      if (e.target === btn) {
+        input(btn);
+      }
+    });
+  });
+};
+clickInput();
