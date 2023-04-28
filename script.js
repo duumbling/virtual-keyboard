@@ -538,3 +538,36 @@ const shiftEvents = () => {
   addEvents(document, "keyup mouseup", up);
 };
 shiftEvents();
+// buttons animation
+const buttonsAnimation = () => {
+  document.addEventListener("keydown", (e) => {
+    btnList.forEach((btn) => {
+      if (e.code === btn.getAttribute("keycode")) {
+        btn.classList.add("active");
+      }
+    });
+  });
+  document.addEventListener("keyup", (e) => {
+    btnList.forEach((btn) => {
+      if (e.code === btn.getAttribute("keycode")) {
+        btn.classList.remove("active");
+      }
+    });
+  });
+};
+buttonsAnimation();
+
+// keyboard animation
+const keyboard = document.querySelector(".keyboard-wrapper");
+const animBody = document.querySelector(".animation-body");
+const anim = document.querySelector(".animation");
+const keyboardAnimation = () => {
+  if (!anim.classList.contains("on")) {
+    anim.classList.toggle("on");
+    keyboard.classList.toggle("animationOn");
+  } else {
+    anim.classList.toggle("on");
+    keyboard.classList.toggle("animationOn");
+  }
+};
+animBody.onclick = keyboardAnimation;
