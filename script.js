@@ -645,7 +645,7 @@ const input = (btn) => {
   } else if (btn.id === "Tab") {
     display.focus();
     display.setRangeText(
-      `${" ".repeat(4)}`,
+      "\t",
       display.selectionStart,
       display.selectionEnd,
       "end"
