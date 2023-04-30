@@ -410,8 +410,12 @@ const load = (loadLang) => {
   anim.append(img);
   animBody.append(anim);
 
+  let OS = document.createElement("p");
+  OS.innerHTML = "Win-64";
+  OS.classList.add("OS");
   statusBar.append(lang);
   statusBar.append(animBody);
+  statusBar.append(OS);
 
   document.querySelector("body").prepend(wrapper);
   document.querySelector("body").prepend(statusBar);
