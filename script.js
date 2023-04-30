@@ -368,6 +368,7 @@ const load = (loadLang) => {
       
       </svg>`;
         newBtn.classList.add("spec-btn");
+        newBtn.classList.remove("keyboard-btn");
       } else if (ruList[i].length > 1 || ruList[i].match(/[↑←↓→]/)) {
         newBtn.classList.add("spec-btn");
       }

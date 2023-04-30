@@ -193,7 +193,8 @@ body {
   }
 }
 
-.keyboard-btn {
+.keyboard-btn,
+.spec-btn[id="Win"] {
   width: 60px;
   height: 60px;
   padding: 8px;
