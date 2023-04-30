@@ -338,8 +338,6 @@ if (localStorage.getItem("currentLang") === null) {
 
 // page-load
 const load = (loadLang) => {
-  console.log("load");
-  // let test = `${loadLang}List[i]`
   const wrapper = document.createElement("div");
   wrapper.classList.add("keyboard-wrapper");
   for (let i = 0; i < ruList.length; i += 1) {
@@ -353,7 +351,6 @@ const load = (loadLang) => {
       newBtn.classList.add("number-btn");
       newBtn.classList.add("keyboard-btn");
       newBtn.innerHTML = ruList[i];
-      // ruList[i]
     } else {
       newBtn.classList.add("keyboard-btn");
       newBtn.innerHTML = ruList[i];
@@ -421,7 +418,6 @@ const load = (loadLang) => {
   document.querySelector("body").prepend(disp);
 };
 
-// currentLang === "ru" ? load(ruShift) : load(engShift);
 if (currentLang === "ru") {
   load(ruList);
 } else {
@@ -432,7 +428,6 @@ const btnList = document.querySelectorAll(".keyboard-btn");
 const lettersList = document.querySelectorAll(".letter-btn");
 const langStatus = document.querySelector(".current-lang");
 let shiftStatus = false;
-// chech if it's upper by shift
 const isUpper = () => {
   if (shiftStatus) {
     btnList.forEach((btn) => {
@@ -484,7 +479,6 @@ langStatus.addEventListener("click", () => {
 
 // change language with shift+ctrl
 document.addEventListener("keydown", (e) => {
-  // console.log(e)
   if (e.key === "Control" && e.shiftKey === true) {
     langSwiper();
   }
@@ -579,7 +573,6 @@ const input = (btn) => {
   const capsStatus = document
     .querySelector("#CapsLock")
     .classList.contains("on");
-  // console.log("caps ", capsStatus, " shift ", shiftStatus);
   if (
     btn.classList.contains("letter-btn") ||
     btn.classList.contains("number-btn")

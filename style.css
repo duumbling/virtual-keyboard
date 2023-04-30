@@ -2,10 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* border: 1px solid red; */
   font-family: "Roboto", sans-serif;
   font-weight: bold;
-  /* color: #fff; */
   -webkit-touch-callout: none;
   /* iOS Safari */
   -webkit-user-select: none;
@@ -210,10 +208,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.1s linear;
+  transition: all 0.2s linear;
   cursor: pointer;
   position: relative;
-  /* z-index: 99; */
 }
 .letter-btn {
   justify-content: flex-start;
@@ -228,8 +225,8 @@ body {
 .number-btn.active,
 .keyboard-btn:active,
 .number-btn:active {
-  box-shadow: none;
-  scale: 0.99;
+  box-shadow: inset 0px 0px 20px #00ff9d;
+  scale: 0.97;
 }
 
 ::after {
@@ -240,15 +237,6 @@ body {
   bottom: 7px;
   right: 7px;
 }
-
-/* ::before {
-  font-weight: normal;
-  font-size: 15px;
-  opacity: 0.6;
-  position: absolute;
-  top: 5px;
-  left: 7px;
-} */
 
 .letter-btn[lang="ru"]::after {
   content: attr(englower);
