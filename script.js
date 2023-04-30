@@ -410,7 +410,7 @@ const load = (loadLang) => {
   anim.append(img);
   animBody.append(anim);
 
-  let OS = document.createElement("p");
+  const OS = document.createElement("p");
   OS.innerHTML = "Win-64";
   OS.classList.add("OS");
   statusBar.append(lang);
