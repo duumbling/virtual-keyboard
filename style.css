@@ -224,7 +224,9 @@ body {
 .keyboard-btn.active,
 .number-btn.active,
 .keyboard-btn:active,
-.number-btn:active {
+.number-btn:active,
+.spec-btn[id="Win"]:active,
+.spec-btn[id="Win"].active {
   box-shadow: inset 0px 0px 20px #00ff9d;
   scale: 0.97;
 }
